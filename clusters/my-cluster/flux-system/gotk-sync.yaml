@@ -11,6 +11,10 @@ spec:
     branch: main
   secretRef:
     name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: flux-system
   url: ssh://git@github.com/SiobhanBaynes/Flux
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -19,6 +23,10 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   interval: 10m0s
   path: ./clusters/my-cluster
   prune: true
